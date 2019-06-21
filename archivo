@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title> Convertir imagen a base 64 </title>
+</head>
+
+<body>
+        
+
+<a>-------------------------------------------------------------------</a>
+
+    <h2>Flito renderer</h2>
+    <div>Data URL:</div>
+    <div id="result" ></div>
+
+    <script type="text/javascript">
+        function toDatauRL(scr) {
+            var xhttp = new XMLHttpRequest(); // XMLHttpRequest es una interfaz que sirve para realiza peticiones al servidor
+
+
+            xhttp.onload = function () {   //El evento onLoad es aquel que se produce cuando un navegador carga un documento HTML
+                var fileReader = new FileReader();  //declaramos la variable del tipo FileReader(El objeto FileReader permite que las aplicaciones web lean ficheros (o información en buffer) almacenados en el cliente usando los objetos Blob)
+                fileReader.onloadend = function() { //ejecutamos esta funcion al finalizar la carga
+                    document.getElementById('result').innerHTML = fileReader.result; //envia de forma inerente a la etiqueta con el id result el resultado de toda la operacion
+                };
+                fileReader.readAsDataURL(xhttp.response);//response solicita que los datos se proporcionen en un formato específico 
+            };
+            xhttp.responseType = 'blob'; //Un Blobobjeto representa un objeto similar a un archivo de datos en bruto inmutables. Los blobs representan datos que no están necesariamente en un formato nativo de JavaScript.
+            xhttp.open('GET', scr, true);
+            xhttp.send();
+        }
+
+
+</body>
+
+
+</html>
